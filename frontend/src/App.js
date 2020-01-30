@@ -5,7 +5,7 @@ import RelocationCalc from "./Components/RelocationCalc";
 
 function App() {
   return (
-    <div>
+    <div className="appStart">
       <MonthlyCalc key={Date.now()} />
       <RelocationCalc />
     </div>
