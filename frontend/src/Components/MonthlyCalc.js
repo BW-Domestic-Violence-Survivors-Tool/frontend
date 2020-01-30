@@ -40,6 +40,8 @@ const MonthlyCalc = ({ errors, touched, values, status }) => {
           name="personalLoans"
           placeholder="Personal Loans"
         ></input>
+        <label>Other Costs</label>
+        <input type="text" name="otherCosts" placeholder="Other"></input>
       </form>
     </div>
   );
