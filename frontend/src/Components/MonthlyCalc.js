@@ -31,23 +31,21 @@ const Label = styled.label`
 const MonthlyCalc = (props, { errors, touched, values, status }) => {
   const [monthlyBudget, setMonthlyBudget] = useState("");
 
-  // const submitHandler = event => {
-  //   event.preventDefault();
-  //   setMonthlyBudget(monthlyBudget => {
-  //     monthlyBudget.monthlyIncome -
-  //       monthlyBudget.transportation -
-  //       monthlyBudget.food -
-  //       monthlyBudget.healthInsurance -
-  //       monthlyBudget.carInsurance -
-  //       monthlyBudget.carNote -
-  //       monthlyBudget.personalLoans -
-  //       monthlyBudget.miscMonthlyExpense;
-  //   });
-  // };
-
-  useEffect(() => {
-    setMonthlyBudget(Budget => [...monthlyBudget, status]);
-  }, [status]);
+  const submitHandler = event => {
+    event.preventDefault();
+    setMonthlyBudget(monthlyBudget => {
+      console.log(monthlyBudget);
+      const budget =
+        parseInt(monthlyBudget.monthlyIncome) -
+        parseInt(monthlyBudget.transportation) -
+        parseInt(monthlyBudget.food) -
+        parseInt(monthlyBudget.healthInsurance) -
+        parseInt(monthlyBudget.carInsurance) -
+        parseInt(monthlyBudget.carNote) -
+        parseInt(monthlyBudget.personalLoans) -
+        parseInt(monthlyBudget.miscMonthlyExpense);
+    });
+  };
 
   return (
     <div className="monthlyForm">
@@ -97,7 +95,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
           placeholder="Other"
         ></input>
       </Calc>
-      <button type="submit">Calculate</button>
+      <button type="submit" onClick={submitHandler}>
+        Calculate
+      </button>
     </div>
   );
 
