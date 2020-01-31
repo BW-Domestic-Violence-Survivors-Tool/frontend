@@ -86,8 +86,6 @@ const MonthlyCalc = ({ errors, touched, values, status }) => {
       <button type="submit">Calculate</button>
     </div>
   );
-
-  monthlyBudget.map(MonthlyBudget => {});
 };
 
 export default MonthlyCalc;

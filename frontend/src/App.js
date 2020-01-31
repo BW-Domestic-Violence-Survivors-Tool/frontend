@@ -3,7 +3,7 @@ import "./App.css";
 import MonthlyCalc from "./Components/MonthlyCalc";
 import RelocationCalc from "./Components/RelocationCalc";
 
-function App() {
+function App(props) {
   return (
     <div className="appStart">
       <MonthlyCalc key={Date.now()} />

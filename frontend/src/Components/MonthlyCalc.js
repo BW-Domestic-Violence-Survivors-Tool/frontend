@@ -28,8 +28,22 @@ const Label = styled.label`
   justify-content: center;
 `;
 
-const MonthlyCalc = ({ errors, touched, values, status }) => {
+const MonthlyCalc = (props, { errors, touched, values, status }) => {
   const [monthlyBudget, setMonthlyBudget] = useState("");
+
+  // const submitHandler = event => {
+  //   event.preventDefault();
+  //   setMonthlyBudget(monthlyBudget => {
+  //     monthlyBudget.monthlyIncome -
+  //       monthlyBudget.transportation -
+  //       monthlyBudget.food -
+  //       monthlyBudget.healthInsurance -
+  //       monthlyBudget.carInsurance -
+  //       monthlyBudget.carNote -
+  //       monthlyBudget.personalLoans -
+  //       monthlyBudget.miscMonthlyExpense;
+  //   });
+  // };
 
   useEffect(() => {
     setMonthlyBudget(Budget => [...monthlyBudget, status]);
@@ -77,13 +91,32 @@ const MonthlyCalc = ({ errors, touched, values, status }) => {
           placeholder="Personal Loans"
         ></input>
         <Label>Other Costs</Label>
-        <input type="text" name="otherCosts" placeholder="Other"></input>
+        <input
+          type="text"
+          name="miscMonthlyExpense"
+          placeholder="Other"
+        ></input>
       </Calc>
       <button type="submit">Calculate</button>
     </div>
   );
 
-  monthlyBudget.map(MonthlyBudget => {});
+  {
+    monthlyBudget.map(budget => (
+      <div>
+        <ul>
+          <li>Montly Income: {budget.monthlyIncome}</li>
+          <li>transportation: {budget.transportation}</li>
+          <li>Food: {budget.food}</li>
+          <li>Health Insurance: {budget.healthInsurance}</li>
+          <li>Car Insurance: {budget.carInsurance}</li>
+          <li>Car Note: {budget.carNote}</li>
+          <li>Personal Loans: {budget.personalLoansood}</li>
+          <li>Miscellaneous: {budget.miscMonthlyExpense}</li>
+        </ul>
+      </div>
+    ));
+  }
 };
 
 export default MonthlyCalc;
