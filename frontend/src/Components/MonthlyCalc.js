@@ -28,12 +28,39 @@ const Label = styled.label`
   justify-content: center;
 `;
 
-const MonthlyCalc = ({ errors, touched, values, status }) => {
-  const [monthlyBudget, setMonthlyBudget] = useState("");
+const MonthlyCalc = (props, { errors, touched, values, status }) => {
+  const [monthlyBudget, setMonthlyBudget] = useState({
+    monthlyIncome: 0,
+    transportation: 0,
+    food: 0,
+    healthInsurance: 0,
+    carInsurance: 0,
+    personalLoans: 0,
+    carNote: 0,
+    miscMonthlyExpense: 0
+  });
 
-  useEffect(() => {
-    setMonthlyBudget(Budget => [...monthlyBudget, status]);
-  }, [status]);
+  const [result, setResult] = useState(0);
+
+  const submitHandler = event => {
+    event.preventDefault();
+    const monthlyKeys = Object.keys(monthlyBudget);
+    const totalCost = monthlyKeys.reduce((accum, current) => {
+      return accum + monthlyBudget[current];
+    }, 0);
+    setResult(totalCost);
+    console.log(totalCost);
+  };
+
+  const changeHandler = event => {
+    event.persist();
+    const parse = parseInt(event.target.value);
+    setMonthlyBudget(prevValue => ({
+      ...prevValue,
+      [event.target.name]: parse
+    }));
+    console.log("in change handler", monthlyBudget);
+  };
 
   return (
     <div className="monthlyForm">
@@ -45,45 +72,67 @@ const MonthlyCalc = ({ errors, touched, values, status }) => {
           <input
             type="text"
             name="monthlyIncome"
-            placeholder="Monthly Income"
+            onChange={changeHandler}
+            value={monthlyBudget.monthlyIncome}
           ></input>
         </Month>
         <Label>Transportation Expense?</Label>
         <input
           type="text"
           name="transportation"
-          placeholder="Transportation"
+          onChange={changeHandler}
+          value={monthlyBudget.transportation}
         ></input>
         <Label>Food Expense?</Label>
-        <input type="text" name="food" placeholder="Cost of Food"></input>
+        <input
+          type="text"
+          name="food"
+          onChange={changeHandler}
+          value={monthlyBudget.food}
+        ></input>
         <Label>Health Insurance?</Label>
         <input
           type="text"
           name="healthInsurance"
-          placeholder="Health Insurance Cost"
+          onChange={changeHandler}
+          value={monthlyBudget.healthInsurance}
         ></input>
         <Label>Car Insurance?</Label>
         <input
           type="text"
           name="carInsurance"
-          placeholder="Car Insurance Cost"
+          onChange={changeHandler}
+          value={monthlyBudget.carInsurance}
         ></input>
         <Label>Car Note Cost?</Label>
-        <input type="text" name="carNote" placeholder="Car Note Cost"></input>
+        <input
+          type="text"
+          name="carNote"
+          onChange={changeHandler}
+          value={monthlyBudget.carNote}
+        ></input>
         <Label>Personal Loans?</Label>
         <input
           type="text"
           name="personalLoans"
-          placeholder="Personal Loans"
+          onChange={changeHandler}
+          value={monthlyBudget.personalLoans}
         ></input>
         <Label>Other Costs</Label>
-        <input type="text" name="otherCosts" placeholder="Other"></input>
+        <input
+          type="text"
+          name="miscMonthlyExpense"
+          onChange={changeHandler}
+          value={monthlyBudget.miscMonthlyExpense}
+        ></input>
       </Calc>
-      <button type="submit">Calculate</button>
+      <button type="submit" onClick={submitHandler}>
+        Calculate
+      </button>
+      <div>Total: {result}</div>
     </div>
   );
-
-  monthlyBudget.map(MonthlyBudget => {});
 };
-
 export default MonthlyCalc;
+
+//user name, password, button, same for register, submit handler, change handler.
