@@ -28,64 +28,123 @@ const Label = styled.label`
   justify-content: center;
 `;
 
-const MonthlyCalc = ({ errors, touched, values, status }) => {
-  const [monthlyBudget, setMonthlyBudget] = useState("");
+const RelocationCalc = ({ errors, touched, values, status }) => {
+  const [relocation, setRelocation] = useState({
+    hotelCosts: 0
+  });
 
-  useEffect(() => {
-    setMonthlyBudget(Budget => [...monthlyBudget, status]);
-  }, [status]);
+  const [resultReloc, setResultReloc] = useState(0);
+
+  const submitHandler = event => {
+    event.preventDefault();
+    const relocationKeys = Object.keys(relocation);
+    const totalCostReloc = relocationKeys.reduce((accum, current) => {
+      return accum + relocation[current];
+    }, 0);
+    setResultReloc(totalCostReloc);
+    console.log(totalCostReloc);
+  };
+
+  const changeHandler = event => {
+    event.persist();
+    const parseReloc = parseInt(event.target.value);
+    setRelocation(prevValue => ({
+      ...prevValue,
+      [event.target.name]: parseReloc
+    }));
+    console.log("in change handler", parseReloc);
+  };
 
   return (
     <div className="monthlyForm">
-      <h1>Monthly Expenditures</h1>
-
+      <h1>Relocation Costs</h1>
       <Calc>
         <Month>
-          <label>Monthly Income</label>
+          <Label>Hotel Cost per Day</Label>
           <input
             type="text"
-            name="monthlyIncome"
-            placeholder="Monthly Income"
+            name="hotelCosts"
+            onChange={changeHandler}
+            value={relocation.hotelCosts}
           ></input>
         </Month>
-        <Label>Transportation Expense?</Label>
+        <Label>New Rental Deposit</Label>
         <input
           type="text"
-          name="transportation"
-          placeholder="Transportation"
+          name="newRental"
+          onChange={changeHandler}
+          value={relocation.newRental}
         ></input>
-        <Label>Food Expense?</Label>
-        <input type="text" name="food" placeholder="Cost of Food"></input>
-        <Label>Health Insurance?</Label>
+        <Label>Utility Connection Fee</Label>
         <input
           type="text"
-          name="healthInsurance"
-          placeholder="Health Insurance Cost"
+          name="utilityConnection"
+          onChange={changeHandler}
+          value={relocation.utilityConnection}
         ></input>
-        <Label>Car Insurance?</Label>
+        <Label>Cost of a Storage Unit (If you have one)</Label>
         <input
           type="text"
-          name="carInsurance"
-          placeholder="Car Insurance Cost"
+          name="storageUnit"
+          onChange={changeHandler}
+          value={relocation.storageUnit}
         ></input>
-        <Label>Car Note Cost?</Label>
-        <input type="text" name="carNote" placeholder="Car Note Cost"></input>
-        <Label>Personal Loans?</Label>
+        <Label>New Monthly Rent/Mortgage</Label>
         <input
           type="text"
-          name="personalLoans"
-          placeholder="Personal Loans"
+          name="mortgageRent"
+          onChange={changeHandler}
+          value={relocation.mortgageRent}
         ></input>
-        <Label>Other Costs</Label>
+        <Label>Car Rental and Gas expenditures</Label>
         <input
           type="text"
-          name="miscMonthlyExpense"
-          placeholder="Other"
+          name="carRental"
+          onChange={changeHandler}
+          value={relocation.carRental}
+        ></input>
+        <Label>Cell Phone Disconnect/Reconnect Fees</Label>
+        <input
+          type="text"
+          name="cellphoneReconnect"
+          onChange={changeHandler}
+          value={relocation.cellphoneReconnect}
+        ></input>
+        <Label>Moving Truck Rental</Label>
+        <input
+          type="text"
+          name="movingTruck"
+          onChange={changeHandler}
+          value={relocation.movingTruck}
+        ></input>
+        <Label>Gas for Moving Truck</Label>
+        <input
+          type="text"
+          name="gasMoving"
+          onChange={changeHandler}
+          value={relocation.gasMoving}
+        ></input>
+        <Label>Any Ongoing Mental Health Costs</Label>
+        <input
+          type="text"
+          name="mentalHealth"
+          onChange={changeHandler}
+          value={relocation.mentalHealth}
+        ></input>
+        <Label>Any other Security Costs</Label>
+        <input
+          type="text"
+          name="security"
+          onChange={changeHandler}
+          value={relocation.security}
         ></input>
       </Calc>
-      <button type="submit">Calculate</button>
+      <button type="submit" onClick={submitHandler}>
+        Calculate
+      </button>
+      <div>{resultReloc}</div>
     </div>
   );
 };
 
-export default MonthlyCalc;
+export default RelocationCalc;
