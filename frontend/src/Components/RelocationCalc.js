@@ -30,7 +30,17 @@ const Label = styled.label`
 
 const RelocationCalc = ({ errors, touched, values, status }) => {
   const [relocation, setRelocation] = useState({
-    hotelCosts: 0
+    hotelCosts: 0,
+    newRental: 0,
+    utilityConnection: 0,
+    storageUnit: 0,
+    mortgageRent: 0,
+    carRental: 0,
+    cellphoneReconnect: 0,
+    movingTruck: 0,
+    gasMoving: 0,
+    mentalHealth: 0,
+    security: 0
   });
 
   const [resultReloc, setResultReloc] = useState(0);
