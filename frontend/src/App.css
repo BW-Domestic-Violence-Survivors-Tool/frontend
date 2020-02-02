@@ -12,7 +12,6 @@
 
 .appStart {
   width: 100%;
-  border: 1px solid green;
 }
 
 .callToAction {
@@ -29,7 +28,7 @@ nav {
   justify-content: space-evenly;
   flex-direction: flex-end;
   width: 100%;
-  margin-top: 1%;
+  padding-top: 1%;
   margin-bottom: 2%;
   padding-bottom: 2%;
   border-bottom: 1px solid black;
@@ -45,4 +44,9 @@ nav {
 .difference {
   width: 100%;
   text-align: center;
+}
+
+#root {
+  background-image: url("./19.jpg");
+  background-size: cover;
 }
