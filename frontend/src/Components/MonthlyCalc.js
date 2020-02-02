@@ -1,31 +1,49 @@
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
+import "../App.css";
 
 const Month = styled.div`
   display: flex;
-  margin: 2%;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
+  padding-bottom: 2%;
 `;
 
 const Calc = styled.form`
   display: flex;
   width: 25%;
   flex-direction: column;
-  margin: 3%;
   padding: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border: 1px solid red;
+  border-radius: 10px;
+  background: rgb(138, 139, 188);
 `;
 
 const Label = styled.label`
   display: flex;
-  margin: 2%;
   width: 100%;
+  padding: 2%;
   align-items: center;
   text-align: center;
   justify-content: center;
+  background: lightgrey;
+  border-radius-left: 10px;
+`;
+
+const LabelHandler = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  margin-bottom: 2%;
+  border: 1px dotted black;
+  border-radius: 10px;
 `;
 
 const MonthlyCalc = (props, { errors, touched, values, status }) => {
@@ -68,7 +86,7 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
 
       <Calc>
         <Month>
-          <label>Monthly Income</label>
+          <label>Monthly Income </label>
           <input
             type="text"
             name="monthlyIncome"
@@ -76,55 +94,76 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
             value={monthlyBudget.monthlyIncome}
           ></input>
         </Month>
-        <Label>Transportation Expense?</Label>
-        <input
-          type="text"
-          name="transportation"
-          onChange={changeHandler}
-          value={monthlyBudget.transportation}
-        ></input>
-        <Label>Food Expense?</Label>
-        <input
-          type="text"
-          name="food"
-          onChange={changeHandler}
-          value={monthlyBudget.food}
-        ></input>
-        <Label>Health Insurance?</Label>
-        <input
-          type="text"
-          name="healthInsurance"
-          onChange={changeHandler}
-          value={monthlyBudget.healthInsurance}
-        ></input>
-        <Label>Car Insurance?</Label>
-        <input
-          type="text"
-          name="carInsurance"
-          onChange={changeHandler}
-          value={monthlyBudget.carInsurance}
-        ></input>
-        <Label>Car Note Cost?</Label>
-        <input
-          type="text"
-          name="carNote"
-          onChange={changeHandler}
-          value={monthlyBudget.carNote}
-        ></input>
-        <Label>Personal Loans?</Label>
-        <input
-          type="text"
-          name="personalLoans"
-          onChange={changeHandler}
-          value={monthlyBudget.personalLoans}
-        ></input>
-        <Label>Other Costs</Label>
-        <input
-          type="text"
-          name="miscMonthlyExpense"
-          onChange={changeHandler}
-          value={monthlyBudget.miscMonthlyExpense}
-        ></input>
+
+        <LabelHandler>
+          <Label>Food Expense?</Label>
+          <input
+            type="text"
+            name="food"
+            onChange={changeHandler}
+            value={monthlyBudget.food}
+          ></input>
+        </LabelHandler>
+
+        <LabelHandler>
+          <Label>Transportation Expense? </Label>
+          <input
+            type="text"
+            name="transportation"
+            onChange={changeHandler}
+            value={monthlyBudget.transportation}
+          ></input>
+        </LabelHandler>
+
+        <LabelHandler>
+          <Label>Health Insurance?</Label>
+          <input
+            type="text"
+            name="healthInsurance"
+            onChange={changeHandler}
+            value={monthlyBudget.healthInsurance}
+          ></input>
+        </LabelHandler>
+
+        <LabelHandler>
+          <Label>Car Insurance?</Label>
+          <input
+            type="text"
+            name="carInsurance"
+            onChange={changeHandler}
+            value={monthlyBudget.carInsurance}
+          ></input>
+        </LabelHandler>
+
+        <LabelHandler>
+          <Label>Car Note Cost?</Label>
+          <input
+            type="text"
+            name="carNote"
+            onChange={changeHandler}
+            value={monthlyBudget.carNote}
+          ></input>
+        </LabelHandler>
+
+        <LabelHandler>
+          <Label>Personal Loans?</Label>
+          <input
+            type="text"
+            name="personalLoans"
+            onChange={changeHandler}
+            value={monthlyBudget.personalLoans}
+          ></input>
+        </LabelHandler>
+
+        <LabelHandler>
+          <Label>Other Costs</Label>
+          <input
+            type="text"
+            name="miscMonthlyExpense"
+            onChange={changeHandler}
+            value={monthlyBudget.miscMonthlyExpense}
+          ></input>
+        </LabelHandler>
       </Calc>
       <button type="submit" onClick={submitHandler}>
         Calculate
@@ -133,6 +172,7 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
     </div>
   );
 };
+
 export default MonthlyCalc;
 
 //user name, password, button, same for register, submit handler, change handler.
