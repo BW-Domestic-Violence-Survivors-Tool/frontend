@@ -11,6 +11,7 @@ const Month = styled.div`
   align-items: center;
   margin-bottom: 5%;
   padding-bottom: 2%;
+  font-weight: 500;
 `;
 
 const Calc = styled.form`
@@ -20,8 +21,8 @@ const Calc = styled.form`
   padding: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
-  border: 1px solid red;
   border-radius: 10px;
+  box-shadow: 10px 10px gray;
   background: rgb(138, 139, 188);
 `;
 
@@ -30,10 +31,11 @@ const Label = styled.label`
   width: 100%;
   padding: 2%;
   align-items: center;
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+  justify-content: flex-start;
   background: lightgrey;
   border-radius-left: 10px;
+  font-weight: 500;
 `;
 
 const LabelHandler = styled.div`
@@ -44,6 +46,14 @@ const LabelHandler = styled.div`
   margin-bottom: 2%;
   border: 1px dotted black;
   border-radius: 10px;
+  box-shadow: 5px 5px gray;
+`;
+
+const Button = styled.button`
+  width: 5%;
+  border-radius: 5px;
+  background: gray;
+  color: lightgray;
 `;
 
 const MonthlyCalc = (props, { errors, touched, values, status }) => {
@@ -86,7 +96,7 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
 
       <Calc>
         <Month>
-          <label>Monthly Income </label>
+          <label>Monthly Income in Dollars</label>
           <input
             type="text"
             name="monthlyIncome"
@@ -96,7 +106,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </Month>
 
         <LabelHandler>
-          <Label>Food Expense?</Label>
+          <Label>
+            Food Expense? <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="food"
@@ -106,7 +118,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Transportation Expense? </Label>
+          <Label>
+            Transportation Expense? <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="transportation"
@@ -116,7 +130,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Health Insurance?</Label>
+          <Label>
+            Health Insurance? <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="healthInsurance"
@@ -126,7 +142,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Car Insurance?</Label>
+          <Label>
+            Car Insurance? <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="carInsurance"
@@ -136,7 +154,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Car Note Cost?</Label>
+          <Label>
+            Car Note Cost? <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="carNote"
@@ -146,7 +166,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Personal Loans?</Label>
+          <Label>
+            Personal Loans? <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="personalLoans"
@@ -156,7 +178,9 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Other Costs</Label>
+          <Label>
+            Other Costs <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="miscMonthlyExpense"
@@ -165,10 +189,11 @@ const MonthlyCalc = (props, { errors, touched, values, status }) => {
           ></input>
         </LabelHandler>
       </Calc>
-      <button type="submit" onClick={submitHandler}>
+
+      <Button type="submit" onClick={submitHandler}>
         Calculate
-      </button>
-      <div>Total: {result}</div>
+      </Button>
+      <div className="difference>">Total: {result}</div>
     </div>
   );
 };

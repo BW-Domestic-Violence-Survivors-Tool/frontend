@@ -9,7 +9,9 @@ const Calc = styled.form`
   padding: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
+
   border-radius: 10px;
+  box-shadow: 10px 10px gray;
   background: rgb(138, 139, 188);
 `;
 
@@ -18,10 +20,11 @@ const Label = styled.label`
   width: 100%;
   padding: 2%;
   align-items: center;
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+  justify-content: flex-start;
   background: lightgrey;
   border-radius-left: 10px;
+  font-weight: 500;
 `;
 
 const LabelHandler = styled.div`
@@ -32,6 +35,13 @@ const LabelHandler = styled.div`
   margin-bottom: 2%;
   border: 1px dotted black;
   border-radius: 10px;
+  box-shadow: 5px 5px gray;
+`;
+const Button = styled.button`
+  width: 5%;
+  border-radius: 5px;
+  background: gray;
+  color: lightgray;
 `;
 
 const RelocationCalc = ({ errors, touched, values, status }) => {
@@ -76,7 +86,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
       <h1>Relocation Costs</h1>
       <Calc>
         <LabelHandler>
-          <Label>Hotel Cost per Day</Label>
+          <Label>
+            Hotel Cost per Day <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="hotelCosts"
@@ -86,7 +98,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>New Rental Deposit</Label>
+          <Label>
+            New Rental Deposit <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="newRental"
@@ -96,7 +110,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Utility Connection Fee</Label>
+          <Label>
+            Utility Connection Fee <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="utilityConnection"
@@ -106,7 +122,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Cost of a Storage Unit (If you have one)</Label>
+          <Label>
+            Storage Unit <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="storageUnit"
@@ -116,7 +134,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>New Monthly Rent/Mortgage</Label>
+          <Label>
+            New Monthly Rent/Mortgage <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="mortgageRent"
@@ -126,7 +146,10 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Car Rental and Gas expenditures</Label>
+          <Label>
+            Car Rental and Gas expenditures{" "}
+            <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="carRental"
@@ -136,7 +159,10 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Cell Phone Disconnect/Reconnect Fees</Label>
+          <Label>
+            Cell Phone Disconnect/Reconnect Fees{" "}
+            <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="cellphoneReconnect"
@@ -146,7 +172,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Moving Truck Rental</Label>
+          <Label>
+            Moving Truck Rental <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="movingTruck"
@@ -156,7 +184,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Gas for Moving Truck</Label>
+          <Label>
+            Gas for Moving Truck <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="gasMoving"
@@ -166,7 +196,10 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Any Ongoing Mental Health Costs</Label>
+          <Label>
+            Any Ongoing Mental Health Costs{" "}
+            <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="mentalHealth"
@@ -176,7 +209,9 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
         </LabelHandler>
 
         <LabelHandler>
-          <Label>Any other Security Costs</Label>
+          <Label>
+            Any other Security Costs <span className="rightOrient"> $</span>
+          </Label>
           <input
             type="text"
             name="security"
@@ -185,10 +220,10 @@ const RelocationCalc = ({ errors, touched, values, status }) => {
           ></input>
         </LabelHandler>
       </Calc>
-      <button type="submit" onClick={submitHandler}>
+      <Button type="submit" onClick={submitHandler}>
         Calculate
-      </button>
-      <div>{resultReloc}</div>
+      </Button>
+      <div className="results">Total: {resultReloc}</div>
     </div>
   );
 };
