@@ -9,7 +9,6 @@ const Calc = styled.form`
   padding: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
-
   border-radius: 10px;
   box-shadow: 10px 10px gray;
   background: rgb(138, 139, 188);
@@ -87,7 +86,7 @@ const RelocationCalc = () => {
       <Calc>
         <LabelHandler>
           <Label>
-            Hotel Cost per Day <span className="rightOrient"> $</span>
+            Hotel Cost per Month<span className="rightOrient"> $</span>
           </Label>
           <input
             type="text"

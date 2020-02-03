@@ -12,11 +12,11 @@ function App(props) {
       <Router>
         <div className="navigation">
           <nav>
-            <Link path="/">Home</Link>
-            <Link>Login</Link>
-            <Link>Calculator</Link>
-            <Link>About</Link>
-            <Link>Resources</Link>
+            <Link to="/">Home</Link>
+            <Link to="#">Login</Link>
+            <Link to="/App">Calculator</Link>
+            <Link to="#">About</Link>
+            <Link to="#">Resources</Link>
           </nav>
         </div>
       </Router>
@@ -32,19 +32,21 @@ function App(props) {
       <div className="appStart">
         <div>
           <MonthlyCalc
-          // month={monthlyBudget}
-          // setMonth={setMonthlyBudget}
-          // resultMonth={result}
+            monthlyBudget={props.monthlyBudget}
+            setMonthlyBudget={props.setMonthlyBudget}
+            result={props.result}
+            setResult={props.setResult}
           />
           <RelocationCalc
-          // reloc={props.resultReloc}
-          // setReloc={props.setResultReloc}
-          // resultRelocation={props.resultReloc}
+            relocation={props.relocation}
+            setRelocation={props.setResultReloc}
+            resultRelocation={props.resultReloc}
+            setResultReloc={props.setResultReloc}
           />
         </div>
         <div className="difference">
           <h3>// combined results go here //</h3>
-          {/* <h3>{MonthlyCalc.result - RelocationCalc.resultReloc}</h3> */}
+          <h3>{props.result - props.resultReloc}</h3>
         </div>
       </div>
     </>
