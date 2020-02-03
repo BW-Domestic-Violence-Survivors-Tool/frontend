@@ -44,7 +44,7 @@ const Button = styled.button`
   color: lightgray;
 `;
 
-const RelocationCalc = ({ errors, touched, values, status }) => {
+const RelocationCalc = () => {
   const [relocation, setRelocation] = useState({
     hotelCosts: 0,
     newRental: 0,

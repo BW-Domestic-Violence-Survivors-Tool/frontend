@@ -56,7 +56,7 @@ const Button = styled.button`
   color: lightgray;
 `;
 
-const MonthlyCalc = (props, { errors, touched, values, status }) => {
+const MonthlyCalc = () => {
   const [monthlyBudget, setMonthlyBudget] = useState({
     monthlyIncome: 0,
     transportation: 0,

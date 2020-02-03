@@ -5,12 +5,14 @@ import MonthlyCalc from "./Components/MonthlyCalc";
 import RelocationCalc from "./Components/RelocationCalc";
 
 function App(props) {
+  // const Total = props.resultMonth - props.resultRelocation;
+
   return (
     <>
       <Router>
         <div className="navigation">
           <nav>
-            <Link>Home</Link>
+            <Link path="/">Home</Link>
             <Link>Login</Link>
             <Link>Calculator</Link>
             <Link>About</Link>
@@ -29,15 +31,23 @@ function App(props) {
       </header>
       <div className="appStart">
         <div>
-          <MonthlyCalc key={Date.now()} />
-          <RelocationCalc />
+          <MonthlyCalc
+          // month={monthlyBudget}
+          // setMonth={setMonthlyBudget}
+          // resultMonth={result}
+          />
+          <RelocationCalc
+          // reloc={props.resultReloc}
+          // setReloc={props.setResultReloc}
+          // resultRelocation={props.resultReloc}
+          />
         </div>
         <div className="difference">
-          <h3> results go here</h3>
+          <h3>// combined results go here //</h3>
+          {/* <h3>{MonthlyCalc.result - RelocationCalc.resultReloc}</h3> */}
         </div>
       </div>
     </>
   );
 }
-
 export default App;
