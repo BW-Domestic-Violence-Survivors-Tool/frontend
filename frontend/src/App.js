@@ -10,8 +10,8 @@ function App(props) {
     <>
       <Router>
         <div className="navigation">
-          <img src="/freeFrom.jpg" alt="FreeFrom" />
           <nav>
+            {/* <img src="freeFrom.jpg" alt="FreeFrom"></img> */}
             <Link to="/">Home</Link>
             <Link to="#">Login</Link>
             <Link to="/App">Calculator</Link>
