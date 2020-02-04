@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import MonthlyCalc from "./Components/MonthlyCalc";
 import RelocationCalc from "./Components/RelocationCalc";
+import Footer from "./Components/Footer";
 
 function App(props) {
-  // const Total = props.resultMonth - props.resultRelocation;
-
   return (
     <>
       <Router>
         <div className="navigation">
+          <img src="/freeFrom.jpg" alt="FreeFrom" />
           <nav>
             <Link to="/">Home</Link>
             <Link to="#">Login</Link>
@@ -44,10 +44,8 @@ function App(props) {
             setResultReloc={props.setResultReloc}
           />
         </div>
-        <div className="difference">
-          <h3>// combined results go here //</h3>
-          <h3>{props.result - props.resultReloc}</h3>
-        </div>
+        <div className="difference"></div>
+        <Footer />
       </div>
     </>
   );
