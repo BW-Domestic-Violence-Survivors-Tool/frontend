@@ -21,7 +21,7 @@ function App(props) {
           </nav>
         </div>
       </Router>
-      <header>
+      {/* <header>
         <div className="callToAction">
           <h1>Welcome to the Domestic Violence Survivors Tool!</h1>
           <p className="welcomeTo">
@@ -29,7 +29,7 @@ function App(props) {
             being incurred should you choose to move as soon as possible!{" "}
           </p>
         </div>
-      </header>
+      </header> */}
       <div className="appStart">
         <div>
           <BudgetReview />

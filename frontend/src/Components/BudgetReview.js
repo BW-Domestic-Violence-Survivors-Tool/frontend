@@ -123,6 +123,16 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
 
   return (
     <div>
+      <header>
+        <div className="callToAction">
+          <h1>Welcome to the Domestic Violence Survivors Tool!</h1>
+          <p className="welcomeTo">
+            This tool is made to help you budget, so you can know the costs
+            being incurred should you choose to move as soon as possible!{" "}
+          </p>
+        </div>
+      </header>
+
       <div className="monthlyForm">
         <h1>Monthly Expenditures</h1>
 
