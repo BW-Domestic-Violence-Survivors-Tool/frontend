@@ -1,9 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
+import Navicgation from "./Components/Navigation";
 import MonthlyCalc from "./Components/MonthlyCalc";
 import RelocationCalc from "./Components/RelocationCalc";
-import Footer from "./Components/Footer";
+import BudgetReview from "./Components/BudgetReview";
+
+import Unsub from "./Components/Unsub";
 
 function App(props) {
   return (
@@ -11,12 +14,10 @@ function App(props) {
       <Router>
         <div className="navigation">
           <nav>
-            {/* <img src="freeFrom.jpg" alt="FreeFrom"></img> */}
             <Link to="/">Home</Link>
             <Link to="#">Login</Link>
-            <Link to="/App">Calculator</Link>
             <Link to="#">About</Link>
-            <Link to="#">Resources</Link>
+            <Link to="#">Unsubscribe</Link>
           </nav>
         </div>
       </Router>
@@ -31,21 +32,9 @@ function App(props) {
       </header>
       <div className="appStart">
         <div>
-          <MonthlyCalc
-            monthlyBudget={props.monthlyBudget}
-            setMonthlyBudget={props.setMonthlyBudget}
-            result={props.result}
-            setResult={props.setResult}
-          />
-          <RelocationCalc
-            relocation={props.relocation}
-            setRelocation={props.setResultReloc}
-            resultRelocation={props.resultReloc}
-            setResultReloc={props.setResultReloc}
-          />
+          <BudgetReview />
         </div>
         <div className="difference"></div>
-        <Footer />
       </div>
     </>
   );
