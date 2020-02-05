@@ -3,10 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import Navigation from "./Components/Navigation";
 import Login from "./Components/Login";
-import BudgetReview from "./Components/BudgetReview";
 import PrivateRoute from "./Components/PrivateRoute";
-
-import Unsub from "./Components/Unsub";
 import BudgetCalculator from "./Components/BudgetReview";
 
 function App(props) {
@@ -17,7 +14,7 @@ function App(props) {
           <Navigation />
         </div>
         <div>
-          <PrivateRoute exact path="/" component={BudgetReview} />
+          <PrivateRoute exact path="/" component={BudgetCalculator} />
           <Route path="/login" component={Login} />
         </div>
       </Router>

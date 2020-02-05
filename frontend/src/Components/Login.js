@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Month = styled.div`
   display: flex;
@@ -68,26 +69,67 @@ const P = styled.p`
   padding-bottom: 5%;
 `;
 
-const Login = () => {
-  return (
-    <>
-      <Month>
-        <h1>Welcome to the Domestic Violence Survivors Tool!!</h1>
-        <Calc>
-          <P>Please Sign In</P>
-          <Div>
-            <LabelHandler>
-              <Label>Please Enter Your Username</Label>
-              <Input type="text" name="username" />
-              <Label>Please Enter Your Password</Label>
-              <Input type="password" name="password" />
-            </LabelHandler>
-            <Button>Log in</Button>
-          </Div>
-        </Calc>
-      </Month>
-    </>
-  );
-};
+class Login extends React.Component {
+  state = {
+    credentials: {
+      username: "",
+      password: ""
+    }
+  };
 
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  login = e => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://domestic-violence-build-week.herokuapp.com/login",
+        this.state.credentials
+      )
+      .then(res => {
+        localStorage.setItem("token", res.data.payload);
+        this.props.history.push("/protected");
+      })
+      .catch(err => console.log(err));
+  };
+
+  render() {
+    return (
+      <>
+        <Month>
+          <h1>Welcome to the Domestic Violence Survivors Tool!!</h1>
+          <Calc>
+            <P>Please Sign In</P>
+            <Div>
+              <LabelHandler>
+                <Label>Please Enter Your Username</Label>
+                <Input
+                  type="text"
+                  name="username"
+                  value={this.state.credentials.username}
+                  onChange={this.handleChange}
+                />
+                <Label>Please Enter Your Password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  value={this.state.credentials.password}
+                  onChange={this.handleChange}
+                />
+              </LabelHandler>
+              <Button>Log in</Button>
+            </Div>
+          </Calc>
+        </Month>
+      </>
+    );
+  }
+}
 export default Login;
