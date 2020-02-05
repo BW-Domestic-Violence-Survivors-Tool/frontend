@@ -18,9 +18,7 @@ function App(props) {
           <Route path="/login" component={Login} />
         </div>
       </Router>
-
       <div className="appStart">
-        <div></div>
         <div className="difference"></div>
       </div>
     </>
