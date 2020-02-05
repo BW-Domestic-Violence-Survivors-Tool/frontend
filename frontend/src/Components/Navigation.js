@@ -4,12 +4,14 @@ import "../App.css";
 
 const Navigation = () => {
   return (
-    <Router>
-      <Link to="/">Home</Link>
-      <Link to="#">Login</Link>
-      <Link to="#">About</Link>
-      <Link to="/Unsub">Unsubscribe</Link>
-    </Router>
+    <div className="navigation">
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="#">Login</Link>
+        <Link to="#">About</Link>
+        <Link to="#">Unsubscribe</Link>
+      </nav>
+    </div>
   );
 };
 
