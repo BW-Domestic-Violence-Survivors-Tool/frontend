@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Foot = styled.footer`
+const Foot = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +23,7 @@ const Button = styled.button`
   font-style: italic;
 `;
 
-function Footer() {
+function Unsub() {
   return (
     <Foot className="footer">
       If you would like to close your account or unsubscribe from all lists,
@@ -35,4 +35,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Unsub;

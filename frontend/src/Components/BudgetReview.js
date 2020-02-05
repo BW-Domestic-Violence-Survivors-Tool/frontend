@@ -1,88 +1,382 @@
 import React, { useState, useEffect } from "react";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 import styled from "styled-components";
 
 const Month = styled.div`
   display: flex;
-  margin: 2%;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
+  padding-bottom: 2%;
+  font-weight: 500;
 `;
 
 const Calc = styled.form`
   display: flex;
   width: 25%;
   flex-direction: column;
-  margin: 3%;
   padding: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  box-shadow: 10px 10px gray;
+  background: rgb(138, 139, 188);
 `;
 
 const Label = styled.label`
   display: flex;
-  margin: 2%;
   width: 100%;
+  padding: 2%;
   align-items: center;
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+  justify-content: flex-start;
+  background: lightgrey;
+  border-radius-left: 10px;
+  font-weight: 500;
 `;
 
-const MonthlyCalc = (props, { errors, touched, values, status }) => {
-  const [monthlyBudget, setMonthlyBudget] = useState("");
+const LabelHandler = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  margin-bottom: 2%;
+  border: 1px dotted black;
+  border-radius: 10px;
+  box-shadow: 5px 5px gray;
+`;
+const Button = styled.button`
+  width: 5%;
+  border-radius: 5px;
+  background: gray;
+  color: lightgray;
+`;
 
-  useEffect(() => {
-    setMonthlyBudget(Budget => [...monthlyBudget, status]);
-  }, [status]);
+const BudgetCalculator = ({ errors, touched, values, status }) => {
+  const [monthlyBudget, setMonthlyBudget] = useState({
+    monthlyIncome: 0,
+    transportation: 0,
+    food: 0,
+    healthInsurance: 0,
+    carInsurance: 0,
+    personalLoans: 0,
+    carNote: 0,
+    miscMonthlyExpense: 0,
+    hotelCosts: 0,
+    newRental: 0,
+    utilityConnection: 0,
+    storageUnit: 0,
+    mortgageRent: 0,
+    carRental: 0,
+    cellphoneReconnect: 0,
+    movingTruck: 0,
+    gasMoving: 0,
+    mentalHealth: 0,
+    security: 0
+  });
+
+  const [result, setResult] = useState(0);
+
+  const submitHandler = event => {
+    event.preventDefault();
+    const monthlyKeys = Object.keys(monthlyBudget);
+    const totalCost = monthlyKeys.reduce((accum, current) => {
+      return accum + monthlyBudget[current];
+    }, 0);
+    setResult(
+      monthlyBudget.monthlyIncome -
+        monthlyBudget.transportation -
+        monthlyBudget.food -
+        monthlyBudget.healthInsurance -
+        monthlyBudget.carInsurance -
+        monthlyBudget.personalLoans -
+        monthlyBudget.carNote -
+        monthlyBudget.miscMonthlyExpense -
+        monthlyBudget.hotelCosts -
+        monthlyBudget.newRental -
+        monthlyBudget.utilityConnection -
+        monthlyBudget.storageUnit -
+        monthlyBudget.mortgageRent -
+        monthlyBudget.carRental -
+        monthlyBudget.cellphoneReconnect -
+        monthlyBudget.movingTruck -
+        monthlyBudget.gasMoving -
+        monthlyBudget.mentalHealth -
+        monthlyBudget.security
+    );
+    console.log({ totalCost });
+  };
+
+  const changeHandler = event => {
+    event.persist();
+    const parse = parseInt(event.target.value);
+    setMonthlyBudget(prevValue => ({
+      ...prevValue,
+      [event.target.name]: parse
+    }));
+  };
 
   return (
-    <div className="monthlyForm">
-      <h1>Monthly Expenditures</h1>
+    <div>
+      <header>
+        <div className="callToAction">
+          <h1>Welcome to the Domestic Violence Survivors Tool!</h1>
+          <p className="welcomeTo">
+            This tool is made to help you budget, so you can know the costs
+            being incurred should you choose to move as soon as possible!{" "}
+          </p>
+        </div>
+      </header>
 
-      <Calc>
-        <Month>
-          <label>Monthly Income</label>
-          <input
-            type="text"
-            name="monthlyIncome"
-            placeholder="Monthly Income"
-          ></input>
-        </Month>
-        <Label>Transportation Expense?</Label>
-        <input
-          type="text"
-          name="transportation"
-          placeholder="Transportation"
-        ></input>
-        <Label>Food Expense?</Label>
-        <input type="text" name="food" placeholder="Cost of Food"></input>
-        <Label>Health Insurance?</Label>
-        <input
-          type="text"
-          name="healthInsurance"
-          placeholder="Health Insurance Cost"
-        ></input>
-        <Label>Car Insurance?</Label>
-        <input
-          type="text"
-          name="carInsurance"
-          placeholder="Car Insurance Cost"
-        ></input>
-        <Label>Car Note Cost?</Label>
-        <input type="text" name="carNote" placeholder="Car Note Cost"></input>
-        <Label>Personal Loans?</Label>
-        <input
-          type="text"
-          name="personalLoans"
-          placeholder="Personal Loans"
-        ></input>
-        <Label>Other Costs</Label>
-        <input
-          type="text"
-          name="miscMonthlyExpense"
-          placeholder="Other"
-        ></input>
-      </Calc>
-      <button type="submit">Calculate</button>
+      <div className="monthlyForm">
+        <h1>Monthly Expenditures</h1>
+
+        <Calc>
+          <Month>
+            <label>Monthly Income in Dollars</label>
+            <input
+              type="text"
+              name="monthlyIncome"
+              onChange={changeHandler}
+              value={monthlyBudget.monthlyIncome}
+            ></input>
+          </Month>
+
+          <LabelHandler>
+            <Label>
+              Food Expense? <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="food"
+              onChange={changeHandler}
+              value={monthlyBudget.food}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Transportation Expense? <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="transportation"
+              onChange={changeHandler}
+              value={monthlyBudget.transportation}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Health Insurance? <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="healthInsurance"
+              onChange={changeHandler}
+              value={monthlyBudget.healthInsurance}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Car Insurance? <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="carInsurance"
+              onChange={changeHandler}
+              value={monthlyBudget.carInsurance}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Car Note Cost? <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="carNote"
+              onChange={changeHandler}
+              value={monthlyBudget.carNote}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Personal Loans? <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="personalLoans"
+              onChange={changeHandler}
+              value={monthlyBudget.personalLoans}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Other Costs <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="miscMonthlyExpense"
+              onChange={changeHandler}
+              value={monthlyBudget.miscMonthlyExpense}
+            ></input>
+          </LabelHandler>
+        </Calc>
+      </div>
+
+      <div className="monthlyForm">
+        <h1>Relocation Costs</h1>
+        <Calc>
+          <LabelHandler>
+            <Label>
+              Hotel Cost per Month<span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="hotelCosts"
+              onChange={changeHandler}
+              value={monthlyBudget.hotelCosts}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              New Rental Deposit <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="newRental"
+              onChange={changeHandler}
+              value={monthlyBudget.newRental}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Utility Connection Fee <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="utilityConnection"
+              onChange={changeHandler}
+              value={monthlyBudget.utilityConnection}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Storage Unit <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="storageUnit"
+              onChange={changeHandler}
+              value={monthlyBudget.storageUnit}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              New Monthly Rent/Mortgage <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="mortgageRent"
+              onChange={changeHandler}
+              value={monthlyBudget.mortgageRent}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Car Rental and Gas expenditures{" "}
+              <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="carRental"
+              onChange={changeHandler}
+              value={monthlyBudget.carRental}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Cell Phone Disconnect/Reconnect Fees{" "}
+              <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="cellphoneReconnect"
+              onChange={changeHandler}
+              value={monthlyBudget.cellphoneReconnect}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Moving Truck Rental <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="movingTruck"
+              onChange={changeHandler}
+              value={monthlyBudget.movingTruck}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Gas for Moving Truck <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="gasMoving"
+              onChange={changeHandler}
+              value={monthlyBudget.gasMoving}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Any Ongoing Mental Health Costs{" "}
+              <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="mentalHealth"
+              onChange={changeHandler}
+              value={monthlyBudget.mentalHealth}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Any other Security Costs <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="security"
+              onChange={changeHandler}
+              value={monthlyBudget.security}
+            ></input>
+          </LabelHandler>
+        </Calc>
+        <Button type="submit" onClick={submitHandler}>
+          Calculate
+        </Button>
+        <div className="difference>">Total: {result}</div>
+      </div>
     </div>
   );
+};
+
+export default BudgetCalculator;
