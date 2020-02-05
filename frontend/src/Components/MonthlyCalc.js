@@ -76,7 +76,16 @@ const MonthlyCalc = () => {
     const totalCost = monthlyKeys.reduce((accum, current) => {
       return accum + monthlyBudget[current];
     }, 0);
-    setResult(totalCost);
+    setResult(
+      monthlyBudget.monthlyIncome -
+        monthlyBudget.transportation -
+        monthlyBudget.food -
+        monthlyBudget.healthInsurance -
+        monthlyBudget.carInsurance -
+        monthlyBudget.personalLoans -
+        monthlyBudget.carNote -
+        monthlyBudget.miscMonthlyExpense
+    );
     console.log(totalCost);
   };
 
