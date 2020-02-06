@@ -66,21 +66,21 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
     food: 0,
     healthInsurance: 0,
     carInsurance: 0,
-    personalLoans: 0,
-    carNote: 0,
-    miscMonthlyExpense: 0,
+    loans: 0,
+    car: 0,
+    other: 0,
     hotelCosts: 0,
-    newRental: 0,
-    utilityConnection: 0,
+    newRentalDeposit: 0,
+    connectUtilities: 0,
     storageUnit: 0,
-    mortgageRent: 0,
-    carRental: 0,
-    cellphoneReconnect: 0,
+    newMonthlyRent: 0,
+    carRentalAndGas: 0,
+    cellphone: 0,
     movingTruck: 0,
-    gasMoving: 0,
-    mentalHealth: 0,
+    gasForMovingTruck: 0,
+    mentalHealthTreatment: 0,
     incomeLoss: 0,
-    security: 0
+    additionalSecurityMeasures: 0
   });
 
   const [result, setResult] = useState(0);
@@ -109,21 +109,21 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
         monthlyBudget.food -
         monthlyBudget.healthInsurance -
         monthlyBudget.carInsurance -
-        monthlyBudget.personalLoans -
-        monthlyBudget.carNote -
-        monthlyBudget.miscMonthlyExpense -
+        monthlyBudget.loans -
+        monthlyBudget.car -
+        monthlyBudget.other -
         monthlyBudget.hotelCosts -
-        monthlyBudget.newRental -
-        monthlyBudget.utilityConnection -
+        monthlyBudget.newRentalDeposit -
+        monthlyBudget.connectUtilities -
         monthlyBudget.storageUnit -
-        monthlyBudget.mortgageRent -
-        monthlyBudget.carRental -
-        monthlyBudget.cellphoneReconnect -
+        monthlyBudget.newMonthlyRent -
+        monthlyBudget.carRentalAndGas -
+        monthlyBudget.cellphone -
         monthlyBudget.movingTruck -
-        monthlyBudget.gasMoving -
-        monthlyBudget.mentalHealth -
+        monthlyBudget.gasForMovingTruck -
+        monthlyBudget.mentalHealthTreatment -
         monthlyBudget.incomeLoss -
-        monthlyBudget.security
+        monthlyBudget.additionalSecurityMeasures
     );
     console.log({ totalCost });
   };
@@ -219,7 +219,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="car"
               onChange={changeHandler}
-              value={monthlyBudget.carNote}
+              value={monthlyBudget.car}
             ></input>
           </LabelHandler>
 
@@ -231,7 +231,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="loans"
               onChange={changeHandler}
-              value={monthlyBudget.personalLoans}
+              value={monthlyBudget.loans}
             ></input>
           </LabelHandler>
 
@@ -243,7 +243,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="other"
               onChange={changeHandler}
-              value={monthlyBudget.miscMonthlyExpense}
+              value={monthlyBudget.other}
             ></input>
           </LabelHandler>
         </Calc>
@@ -272,7 +272,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="newRentalDeposit"
               onChange={changeHandler}
-              value={monthlyBudget.newRental}
+              value={monthlyBudget.newRentalDeposit}
             ></input>
           </LabelHandler>
 
@@ -282,9 +282,9 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="connectUtility"
+              name="connectUtilities"
               onChange={changeHandler}
-              value={monthlyBudget.utilityConnection}
+              value={monthlyBudget.connectUtilities}
             ></input>
           </LabelHandler>
 
@@ -308,7 +308,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="newMonthlyRent"
               onChange={changeHandler}
-              value={monthlyBudget.mortgageRent}
+              value={monthlyBudget.newMonthlyRent}
             ></input>
           </LabelHandler>
 
@@ -321,7 +321,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="carRentalAndGas"
               onChange={changeHandler}
-              value={monthlyBudget.carRental}
+              value={monthlyBudget.carRentalAndGas}
             ></input>
           </LabelHandler>
 
@@ -334,7 +334,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="cellphone"
               onChange={changeHandler}
-              value={monthlyBudget.cellphoneReconnect}
+              value={monthlyBudget.cellphone}
             ></input>
           </LabelHandler>
 
@@ -358,7 +358,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="gasForMovingTruck"
               onChange={changeHandler}
-              value={monthlyBudget.gasMoving}
+              value={monthlyBudget.gasForMovingTruck}
             ></input>
           </LabelHandler>
 
@@ -371,7 +371,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="mentalHealthTreatment"
               onChange={changeHandler}
-              value={monthlyBudget.mentalHealth}
+              value={monthlyBudget.mentalHealthTreatment}
             ></input>
           </LabelHandler>
 
@@ -395,7 +395,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               type="text"
               name="additionalSecurityMeasures"
               onChange={changeHandler}
-              value={monthlyBudget.security}
+              value={monthlyBudget.additionalSecurityMeasures}
             ></input>
           </LabelHandler>
         </Calc>
