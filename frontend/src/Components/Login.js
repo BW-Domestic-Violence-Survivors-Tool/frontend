@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "../../node_modules/axios";
-<<<<<<< HEAD
-import API from "../utils/axiosWithAuth"
-import { __values } from "tslib";
-=======
 import API from "../utils/axiosWithAuth";
->>>>>>> f04a2644ea24f10810ffea6c4e4ca013d28c33e1
 
 const Month = styled.div`
   display: flex;
@@ -79,24 +74,6 @@ const ButtonContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-<<<<<<< HEAD
-  const handleSubmit = event => {
-    event.preventDefault();
-    let auth = {username: values.username, password: values.password};
-    
-    API()
-      .post(
-        "https://domestic-violence-build-week.herokuapp.com/login",
-        auth)
-      .then(res => {
-        console.log(res.data.token)
-        localStorage.setItem("token", res.data.token)
-    })
-    .catch(err => {
-        console.log(err);
-    });
-};
-=======
 class Login extends React.Component {
   state = {
     credentials: {
@@ -126,7 +103,6 @@ class Login extends React.Component {
       })
       .catch(err => console.log(err));
   };
->>>>>>> f04a2644ea24f10810ffea6c4e4ca013d28c33e1
 
   render() {
     return (
@@ -157,13 +133,9 @@ class Login extends React.Component {
                   onChange={this.handleSubmit}
                 />
               </LabelHandler>
-<<<<<<< HEAD
-              <Button>Log in</Button>
-=======
               <ButtonContainer>
                 <Button type="submit">Log in</Button>
               </ButtonContainer>
->>>>>>> f04a2644ea24f10810ffea6c4e4ca013d28c33e1
             </Div>
           </Calc>
         </Month>
