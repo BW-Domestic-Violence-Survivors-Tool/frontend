@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "../../node_modules/axios";
+import API from "../utils/axiosWithAuth";
 
 const Month = styled.div`
   display: flex;
@@ -88,14 +89,13 @@ class Login extends React.Component {
 
   login = e => {
     e.preventDefault();
-    axios
-      .post(
-        "https://domestic-violence-build-week.herokuapp.com/login",
-        this.state.credentials
-      )
+    console.log(this.state.credentials);
+    API()
+      .post("/login", this.state.credentials)
       .then(res => {
-        localStorage.setItem("token", res.data.payload);
-        this.props.history.push("/protected");
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        this.props.history.push("/BudgetReview");
       })
       .catch(err => console.log(err));
   };
@@ -105,7 +105,7 @@ class Login extends React.Component {
       <>
         <Month>
           <h1>Welcome to the Domestic Violence Survivors Tool!!</h1>
-          <Calc>
+          <Calc onSubmit={this.login}>
             <P>Please Sign In</P>
             <Div>
               <LabelHandler>
@@ -124,7 +124,7 @@ class Login extends React.Component {
                   onChange={this.handleChange}
                 />
               </LabelHandler>
-              <Button onClick="Login()">Log in</Button>
+              <Button type="submit">Log in</Button>
             </Div>
           </Calc>
         </Month>
