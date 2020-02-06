@@ -370,9 +370,11 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             ></input>
           </LabelHandler>
         </Calc>
+
         <Button type="submit" onClick={submitHandler}>
           Calculate
         </Button>
+
         <div className="difference>">Total: {result}</div>
       </div>
     </div>

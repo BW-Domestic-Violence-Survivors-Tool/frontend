@@ -74,7 +74,7 @@ const ButtonContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-class Login extends React.Component {
+class Register extends React.Component {
   state = {
     credentials: {
       username: "",
@@ -91,11 +91,11 @@ class Login extends React.Component {
     });
   };
 
-  login = e => {
+  register = e => {
     e.preventDefault();
     console.log(this.state.credentials);
     API()
-      .post("/login", this.state.credentials)
+      .post("/register", this.state.credentials)
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
@@ -109,23 +109,18 @@ class Login extends React.Component {
       <>
         <Month>
           <h1>Welcome to the Domestic Violence Survivors Tool!!</h1>
-          <Calc onSubmit={this.login}>
-            <P>Please Sign In.</P>
-            <p>
-              {" "}
-              if You haven't registered yet, please click the register button on
-              the top of the page!
-            </p>
+          <Calc onSubmit={this.register}>
+            <P>Please Register!</P>
             <Div>
               <LabelHandler>
-                <Label>Please Enter Your Username</Label>
+                <Label>Please Enter Your Desired Username</Label>
                 <Input
                   type="text"
                   name="username"
                   value={this.state.credentials.username}
                   onChange={this.handleChange}
                 />
-                <Label>Please Enter Your Password</Label>
+                <Label>Please Enter Your Desired Password</Label>
                 <Input
                   type="password"
                   name="password"
@@ -134,7 +129,7 @@ class Login extends React.Component {
                 />
               </LabelHandler>
               <ButtonContainer>
-                <Button type="submit">Log in</Button>
+                <Button type="submit">Register</Button>
               </ButtonContainer>
             </Div>
           </Calc>
@@ -143,4 +138,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default Register;

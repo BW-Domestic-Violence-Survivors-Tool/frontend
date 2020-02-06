@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import Navigation from "./Components/Navigation";
 import Login from "./Components/Login";
+import Register from "./Components/Register";
 import PrivateRoute from "./Components/PrivateRoute";
 import BudgetCalculator from "./Components/BudgetReview";
+import Unsub from "./Components/Unsub";
 
 function App(props) {
   return (
@@ -20,11 +22,11 @@ function App(props) {
             component={BudgetCalculator}
           />
           <Route path="/login" component={Login} />
+          <Route path="/Register" component={Register} />
+          <Route path="/Unsub" component={Unsub} />
         </div>
       </Router>
-      <div className="appStart">
-        <div className="difference"></div>
-      </div>
+      <div className="appStart"></div>
     </>
   );
 }
