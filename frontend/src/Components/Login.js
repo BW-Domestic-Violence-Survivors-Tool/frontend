@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "../../node_modules/axios";
+import API from "../utils/axiosWithAuth"
+import { __values } from "tslib";
 
 const Month = styled.div`
   display: flex;
@@ -69,36 +71,22 @@ const P = styled.p`
   padding-bottom: 5%;
 `;
 
-class Login extends React.Component {
-  state = {
-    credentials: {
-      username: "",
-      password: ""
-    }
-  };
-
-  handleChange = e => {
-    this.setState({
-      credentials: {
-        ...this.state.credentials,
-        [e.target.name]: e.target.value
-      }
-    });
-  };
-
-  login = e => {
-    e.preventDefault();
-    axios
+  const handleSubmit = event => {
+    event.preventDefault();
+    let auth = {username: values.username, password: values.password};
+    
+    API()
       .post(
         "https://domestic-violence-build-week.herokuapp.com/login",
-        this.state.credentials
-      )
+        auth)
       .then(res => {
-        localStorage.setItem("token", res.data.payload);
-        this.props.history.push("/protected");
-      })
-      .catch(err => console.log(err));
-  };
+        console.log(res.data.token)
+        localStorage.setItem("token", res.data.token)
+    })
+    .catch(err => {
+        console.log(err);
+    });
+};
 
   render() {
     return (
@@ -114,22 +102,22 @@ class Login extends React.Component {
                   type="text"
                   name="username"
                   value={this.state.credentials.username}
-                  onChange={this.handleChange}
+                  onChange={this.handleSubmit}
                 />
                 <Label>Please Enter Your Password</Label>
                 <Input
                   type="password"
                   name="password"
                   value={this.state.credentials.password}
-                  onChange={this.handleChange}
+                  onChange={this.handleSubmit}
                 />
               </LabelHandler>
-              <Button onClick="Login()">Log in</Button>
+              <Button>Log in</Button>
             </Div>
           </Calc>
         </Month>
       </>
     );
-  }
-}
+  };
+};
 export default Login;
