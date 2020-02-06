@@ -123,14 +123,14 @@ class Login extends React.Component {
                   type="text"
                   name="username"
                   value={this.state.credentials.username}
-                  onChange={this.handleSubmit}
+                  onChange={this.handleChange}
                 />
                 <Label>Please Enter Your Password</Label>
                 <Input
                   type="password"
                   name="password"
                   value={this.state.credentials.password}
-                  onChange={this.handleSubmit}
+                  onChange={this.handleChange}
                 />
               </LabelHandler>
               <ButtonContainer>

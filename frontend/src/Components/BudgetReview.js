@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
+import API from "../utils/axiosWithAuth"
+
+
+
 
 const Month = styled.div`
   display: flex;
@@ -84,7 +88,19 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
     event.preventDefault();
     const monthlyKeys = Object.keys(monthlyBudget);
     const totalCost = monthlyKeys.reduce((accum, current) => {
+
+   
+        API()
+        .post("/user/origin/addData")
+        .then(res => {   
+        console.log(res);       
+        })        
+        .catch(err => console.log(err));        
+       
+
       return accum + monthlyBudget[current];
+
+      
     }, 0);
     setResult(
       monthlyBudget.monthlyIncome -
@@ -199,7 +215,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="carNote"
+              name="car"
               onChange={changeHandler}
               value={monthlyBudget.carNote}
             ></input>
@@ -211,7 +227,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="personalLoans"
+              name="loans"
               onChange={changeHandler}
               value={monthlyBudget.personalLoans}
             ></input>
@@ -223,7 +239,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="miscMonthlyExpense"
+              name="other"
               onChange={changeHandler}
               value={monthlyBudget.miscMonthlyExpense}
             ></input>
@@ -252,7 +268,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="newRental"
+              name="newRentalDeposit"
               onChange={changeHandler}
               value={monthlyBudget.newRental}
             ></input>
@@ -264,7 +280,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="utilityConnection"
+              name="connectUtility"
               onChange={changeHandler}
               value={monthlyBudget.utilityConnection}
             ></input>
@@ -288,7 +304,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="mortgageRent"
+              name="newMonthlyRent"
               onChange={changeHandler}
               value={monthlyBudget.mortgageRent}
             ></input>
@@ -301,7 +317,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="carRental"
+              name="carRentalAndGas"
               onChange={changeHandler}
               value={monthlyBudget.carRental}
             ></input>
@@ -314,7 +330,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="cellphoneReconnect"
+              name="cellphone"
               onChange={changeHandler}
               value={monthlyBudget.cellphoneReconnect}
             ></input>
@@ -338,7 +354,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="gasMoving"
+              name="gasForMovingTruck"
               onChange={changeHandler}
               value={monthlyBudget.gasMoving}
             ></input>
@@ -351,7 +367,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="mentalHealth"
+              name="mentalHealthTreatment"
               onChange={changeHandler}
               value={monthlyBudget.mentalHealth}
             ></input>
@@ -363,7 +379,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
             </Label>
             <input
               type="text"
-              name="security"
+              name="additionalSecurityMeasures"
               onChange={changeHandler}
               value={monthlyBudget.security}
             ></input>

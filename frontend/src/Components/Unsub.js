@@ -22,6 +22,15 @@ const Button = styled.button`
   font-weight: old;
   font-style: italic;
 `;
+// const unsub = () =>{
+  // axiosWithAuth()
+  // .delete('/token/')
+  // .then(res => {
+    // console.log("Delete", credentials, login.credentials)
+  // })
+// }
+// .catch(err => console.log(err));
+
 
 function Unsub() {
   return (
