@@ -8,7 +8,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import BudgetCalculator from "./Components/BudgetReview";
 import Unsub from "./Components/Unsub";
 
-function App(props) {
+function App() {
   return (
     <>
       <Router>
@@ -27,6 +27,7 @@ function App(props) {
         </div>
       </Router>
       <div className="appStart"></div>
+      <Login />
     </>
   );
 }

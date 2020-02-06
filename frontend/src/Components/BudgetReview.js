@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
@@ -56,7 +55,7 @@ const Button = styled.button`
   color: lightgray;
 `;
 
-const BudgetCalculator = ({ errors, touched, values, status }) => {
+const BudgetCalculator = () => {
   const [monthlyBudget, setMonthlyBudget] = useState({
     monthlyIncome: 0,
     transportation: 0,
@@ -374,6 +373,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
         <Button type="submit" onClick={submitHandler}>
           Calculate
         </Button>
+        <Button type="submit">Reset</Button>
 
         <div className="difference>">Total: {result}</div>
       </div>
