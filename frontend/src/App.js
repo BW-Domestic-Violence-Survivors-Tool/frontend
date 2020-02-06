@@ -27,7 +27,6 @@ function App() {
         </div>
       </Router>
       <div className="appStart"></div>
-      <Login />
     </>
   );
 }
