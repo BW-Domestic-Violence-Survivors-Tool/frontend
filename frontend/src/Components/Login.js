@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "../../node_modules/axios";
+<<<<<<< HEAD
 import API from "../utils/axiosWithAuth"
 import { __values } from "tslib";
+=======
+import API from "../utils/axiosWithAuth";
+>>>>>>> f04a2644ea24f10810ffea6c4e4ca013d28c33e1
 
 const Month = styled.div`
   display: flex;
@@ -63,14 +67,19 @@ const Input = styled.input`
   height: 2rem;
 `;
 
-const P = styled.p`
+const P = styled.h1`
   display: flex;
   justify-content: center;
   text-algin: center;
   border-bottom: 1px solid black;
   padding-bottom: 5%;
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
 
+<<<<<<< HEAD
   const handleSubmit = event => {
     event.preventDefault();
     let auth = {username: values.username, password: values.password};
@@ -87,14 +96,50 @@ const P = styled.p`
         console.log(err);
     });
 };
+=======
+class Login extends React.Component {
+  state = {
+    credentials: {
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  login = e => {
+    e.preventDefault();
+    console.log(this.state.credentials);
+    API()
+      .post("/login", this.state.credentials)
+      .then(res => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        this.props.history.push("/BudgetReview");
+      })
+      .catch(err => console.log(err));
+  };
+>>>>>>> f04a2644ea24f10810ffea6c4e4ca013d28c33e1
 
   render() {
     return (
       <>
         <Month>
           <h1>Welcome to the Domestic Violence Survivors Tool!!</h1>
-          <Calc>
-            <P>Please Sign In</P>
+          <Calc onSubmit={this.login}>
+            <P>Please Sign In.</P>
+            <p>
+              {" "}
+              if You haven't registered yet, please click the register button on
+              the top of the page!
+            </p>
             <Div>
               <LabelHandler>
                 <Label>Please Enter Your Username</Label>
@@ -112,7 +157,13 @@ const P = styled.p`
                   onChange={this.handleSubmit}
                 />
               </LabelHandler>
+<<<<<<< HEAD
               <Button>Log in</Button>
+=======
+              <ButtonContainer>
+                <Button type="submit">Log in</Button>
+              </ButtonContainer>
+>>>>>>> f04a2644ea24f10810ffea6c4e4ca013d28c33e1
             </Div>
           </Calc>
         </Month>
