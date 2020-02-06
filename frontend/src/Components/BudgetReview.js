@@ -79,6 +79,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
     movingTruck: 0,
     gasMoving: 0,
     mentalHealth: 0,
+    incomeLoss: 0,
     security: 0
   });
 
@@ -121,6 +122,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
         monthlyBudget.movingTruck -
         monthlyBudget.gasMoving -
         monthlyBudget.mentalHealth -
+        monthlyBudget.incomeLoss -
         monthlyBudget.security
     );
     console.log({ totalCost });
@@ -370,6 +372,18 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
               name="mentalHealthTreatment"
               onChange={changeHandler}
               value={monthlyBudget.mentalHealth}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Income Loss <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="incomeLoss"
+              onChange={changeHandler}
+              value={monthlyBudget.incomeLoss}
             ></input>
           </LabelHandler>
 
