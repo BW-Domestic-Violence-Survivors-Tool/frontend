@@ -14,7 +14,11 @@ function App(props) {
           <Navigation />
         </div>
         <div>
-          <PrivateRoute exact path="/" component={BudgetCalculator} />
+          <PrivateRoute
+            exact
+            path="/BudgetReview"
+            component={BudgetCalculator}
+          />
           <Route path="/login" component={Login} />
         </div>
       </Router>
