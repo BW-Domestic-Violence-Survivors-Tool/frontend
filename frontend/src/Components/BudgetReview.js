@@ -135,6 +135,18 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
     }));
   };
 
+   const handleSubmit = event => {
+    event.preventDefault()
+
+    //put request will refresh calculator
+  API()
+    .put("/user/addData/1", 0)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log(err))
+  };
+
   return (
     <div>
       <header>
@@ -404,6 +416,12 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
 
         <div className="difference>">Total: {result}</div>
       </div>
+      
+      <div>
+      <Button onClick={handleSubmit}>
+          Update
+        </Button>
+        </div> 
     </div>
   );
 };

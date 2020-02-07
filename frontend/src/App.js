@@ -7,6 +7,7 @@ import Register from "./Components/Register";
 import PrivateRoute from "./Components/PrivateRoute";
 import BudgetCalculator from "./Components/BudgetReview";
 import Unsub from "./Components/Unsub";
+import SavedUsers from "./Components/SavedUsers"
 
 function App(props) {
   return (
@@ -18,12 +19,13 @@ function App(props) {
         <div>
           <PrivateRoute
             exact
-            path="/"
+            path="/BudgetReview"
             component={BudgetCalculator}
           />
           <Route path="/login" component={Login} />
           <Route path="/Register" component={Register} />
           <Route path="/Unsub" component={Unsub} />
+          <Route path="/SavedUsers" component={SavedUsers} />
         </div>
       </Router>
       <div className="appStart"></div>

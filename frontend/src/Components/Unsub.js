@@ -28,6 +28,8 @@ const Button = styled.button`
 function Unsub() {
   const handleSubmit = event => {
     event.preventDefault()
+    
+    //delete will delete user login credentials upon clicking on unsubscribe
   API()
     .delete("/delete/2")
     .then(res => {
