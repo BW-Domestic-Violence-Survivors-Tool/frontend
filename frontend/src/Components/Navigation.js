@@ -6,10 +6,10 @@ const Navigation = () => {
   return (
     <div className="navigation">
       <nav>
-        <Link to="https://sharp-turing-48e911.netlify.com">Home(AC)</Link>
-        <Link to="https://https://freedomcalculatorfromfreefrom.netlify.com/">
+        <a href="https://sharp-turing-48e911.netlify.com">Home(AC)</a>
+        <a href="https://freedomcalculatorfromfreefrom.netlify.com/">
           Home(JW)
-        </Link>
+        </a>
         <Link to="/Login">Login</Link>
         <Link to="/Register">Register</Link>
         <Link to="/Unsub">Unsubscribe</Link>
