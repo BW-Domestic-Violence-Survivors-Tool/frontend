@@ -68,6 +68,10 @@ const Result = styled.div`
   box-shadow: 5px 5px gray;
 `;
 
+const DifferenceStyle = styled.div`
+  text-align: center;
+`;
+
 const BudgetCalculator = () => {
   const [monthlyBudget, setMonthlyBudget] = useState({
     monthlyIncome: 0,
@@ -130,6 +134,26 @@ const BudgetCalculator = () => {
       ...prevValue,
       [event.target.name]: parse
     }));
+  };
+
+  const TotalDiv = () => {
+    if (result === 0) {
+      return <>Total: {result}</>;
+    } else if (result > 0) {
+      return (
+        <>
+          <p> Total: {result}</p>{" "}
+          <p> You are ready to make the move! Be safe!</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p>Total: {result}</p>
+          <p> You will need to save up a little more to get to your goal!</p>
+        </>
+      );
+    }
   };
 
   return (
@@ -389,7 +413,7 @@ const BudgetCalculator = () => {
         {/* <Button type="submit">Reset</Button> */}
 
         <Result>
-          <div className="difference>">Total: {result}</div>
+          <DifferenceStyle>{TotalDiv()}</DifferenceStyle>
         </Result>
       </div>
     </div>
