@@ -17,7 +17,7 @@ function App() {
         </div>
         <div>
           <PrivateRoute exact path="/" component={BudgetCalculator} />
-          <Route path="/login" component={Login} />
+          <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
           <Route path="/Unsub" component={Unsub} />
         </div>
