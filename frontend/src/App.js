@@ -7,7 +7,7 @@ import Register from "./Components/Register";
 import PrivateRoute from "./Components/PrivateRoute";
 import BudgetCalculator from "./Components/BudgetReview";
 import Unsub from "./Components/Unsub";
-import SavedUsers from "./Components/SavedUsers"
+import SavedUsers from "./Components/SavedUsers";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             path="/BudgetReview"
             component={BudgetCalculator}
           />
-          <Route path="/login" component={Login} />
+          <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
           <Route path="/Unsub" component={Unsub} />
           <Route path="/SavedUsers" component={SavedUsers} />
