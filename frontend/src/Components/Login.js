@@ -99,7 +99,7 @@ class Login extends React.Component {
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        this.props.history.push("/BudgetReview");
+        this.props.history.push("/");
       })
       .catch(err => console.log(err));
   };
@@ -141,6 +141,6 @@ class Login extends React.Component {
         </Month>
       </>
     );
-  };
-};
+  }
+}
 export default Login;
