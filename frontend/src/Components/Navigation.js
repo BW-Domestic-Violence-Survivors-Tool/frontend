@@ -7,7 +7,7 @@ const Navigation = () => {
     <div className="navigation">
       <nav>
         <Link to="https://sharp-turing-48e911.netlify.com">Home(AC)</Link>
-        <Link to="https://5e38b974657d47000b713c54--freedomcalculatorfromfreefrom.netlify.com/">
+        <Link to="https://https://freedomcalculatorfromfreefrom.netlify.com/">
           Home(JW)
         </Link>
         <Link to="/Login">Login</Link>
