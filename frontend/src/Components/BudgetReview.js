@@ -55,6 +55,19 @@ const Button = styled.button`
   color: lightgray;
 `;
 
+const Result = styled.div`
+  display: flex;
+  margin: 2%;
+  border: 1px solid black;
+  width: 20%;
+  padding: 2%;
+  background: rgb(138, 139, 188);
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 5px 5px gray;
+`;
+
 const BudgetCalculator = () => {
   const [monthlyBudget, setMonthlyBudget] = useState({
     monthlyIncome: 0,
@@ -373,9 +386,11 @@ const BudgetCalculator = () => {
         <Button type="submit" onClick={submitHandler}>
           Calculate
         </Button>
-        <Button type="submit">Reset</Button>
+        {/* <Button type="submit">Reset</Button> */}
 
-        <div className="difference>">Total: {result}</div>
+        <Result>
+          <div className="difference>">Total: {result}</div>
+        </Result>
       </div>
     </div>
   );
