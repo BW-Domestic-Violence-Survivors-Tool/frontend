@@ -88,15 +88,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
   const submitHandler = event => {
     event.preventDefault();
     const monthlyKeys = Object.keys(monthlyBudget);
-    const totalCost = monthlyKeys.reduce((accum, current) => {
-
-   
-        API()
-        .post("/user/origin/addData")
-        .then(res => {   
-        console.log(res);       
-        })        
-        .catch(err => console.log(err));        
+    const totalCost = monthlyKeys.reduce((accum, current) => {      
        
 
       return accum + monthlyBudget[current];
@@ -126,6 +118,12 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
         monthlyBudget.additionalSecurityMeasures
     );
     console.log({ totalCost });
+    API()
+    .post("/user/addData", monthlyBudget)
+    .then(res => {   
+    console.log(res);       
+    })        
+    .catch(err => console.log(err));  
   };
 
   const changeHandler = event => {

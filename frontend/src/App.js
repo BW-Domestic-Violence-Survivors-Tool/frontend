@@ -18,7 +18,7 @@ function App(props) {
         <div>
           <PrivateRoute
             exact
-            path="/BudgetReview"
+            path="/"
             component={BudgetCalculator}
           />
           <Route path="/login" component={Login} />
