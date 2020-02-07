@@ -59,7 +59,24 @@ const Button = styled.button`
   color: lightgray;
 `;
 
-const BudgetCalculator = ({ errors, touched, values, status }) => {
+const Result = styled.div`
+  display: flex;
+  margin: 2%;
+  border: 1px solid black;
+  width: 20%;
+  padding: 2%;
+  background: rgb(138, 139, 188);
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 5px 5px gray;
+`;
+
+const DifferenceStyle = styled.div`
+  text-align: center;
+`;
+
+const BudgetCalculator = () => {
   const [monthlyBudget, setMonthlyBudget] = useState({
     monthlyIncome: 0,
     transportation: 0,
@@ -135,6 +152,7 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
     }));
   };
 
+
    const handleSubmit = event => {
     event.preventDefault()
 
@@ -145,6 +163,27 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
       console.log(res)
     })
     .catch(err => console.log(err))
+   };
+  
+  
+  const TotalDiv = () => {
+    if (result === 0) {
+      return <>Total: {result}</>;
+    } else if (result > 0) {
+      return (
+        <>
+          <p> Total: {result}</p>{" "}
+          <p> You are ready to make the move! Be safe!</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p>Total: {result}</p>
+          <p> You will need to save up a little more to get to your goal!</p>
+        </>
+      );
+    }
   };
 
   return (
@@ -413,8 +452,11 @@ const BudgetCalculator = ({ errors, touched, values, status }) => {
         <Button type="submit" onClick={submitHandler}>
           Calculate
         </Button>
+        {/* <Button type="submit">Reset</Button> */}
 
-        <div className="difference>">Total: {result}</div>
+        <Result>
+          <DifferenceStyle>{TotalDiv()}</DifferenceStyle>
+        </Result>
       </div>
       
       <div>

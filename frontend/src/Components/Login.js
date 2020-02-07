@@ -113,7 +113,7 @@ class Login extends React.Component {
             <P>Please Sign In.</P>
             <p>
               {" "}
-              if You haven't registered yet, please click the register button on
+              If you haven't registered yet, please click the register button on
               the top of the page!
             </p>
             <Div>

@@ -9,7 +9,7 @@ import BudgetCalculator from "./Components/BudgetReview";
 import Unsub from "./Components/Unsub";
 import SavedUsers from "./Components/SavedUsers"
 
-function App(props) {
+function App() {
   return (
     <>
       <Router>
@@ -32,4 +32,5 @@ function App(props) {
     </>
   );
 }
+
 export default App;
