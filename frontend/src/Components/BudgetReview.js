@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
+import API from "../utils/axiosWithAuth";
 
 const Month = styled.div`
   display: flex;
@@ -134,6 +135,18 @@ const BudgetCalculator = () => {
       ...prevValue,
       [event.target.name]: parse
     }));
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    //put request will refresh calculator
+    API()
+      .put("/user/addData/1", 0)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   const TotalDiv = () => {
