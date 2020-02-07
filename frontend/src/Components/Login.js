@@ -141,6 +141,6 @@ class Login extends React.Component {
         </Month>
       </>
     );
-  }
-}
+  };
+};
 export default Login;

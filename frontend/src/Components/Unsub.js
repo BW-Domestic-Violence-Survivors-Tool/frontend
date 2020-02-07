@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import API from "../utils/axiosWithAuth"
 
 const Foot = styled.div`
   display: flex;
@@ -23,13 +24,27 @@ const Button = styled.button`
   font-style: italic;
 `;
 
+
 function Unsub() {
+  const handleSubmit = event => {
+    event.preventDefault()
+    
+    //delete will delete user login credentials upon clicking on unsubscribe
+  API()
+    .delete("/delete/2")
+    .then(res => {
+      console.log(res)
+      res.send().json({message: "user was deleted"})
+    })
+    .catch(err => console.log(err))
+  };
+
   return (
     <Foot className="footer">
       If you would like to close your account or unsubscribe from all lists,
       please click the button below:
       <ButtonDiv>
-        <Button>Unsubscribe</Button>
+        <Button onClick={handleSubmit}>Unsubscribe</Button>
       </ButtonDiv>
     </Foot>
   );

@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
+import API from "../utils/axiosWithAuth"
+
+
+
 
 const Month = styled.div`
   display: flex;
@@ -79,20 +83,21 @@ const BudgetCalculator = () => {
     food: 0,
     healthInsurance: 0,
     carInsurance: 0,
-    personalLoans: 0,
-    carNote: 0,
-    miscMonthlyExpense: 0,
+    loans: 0,
+    car: 0,
+    other: 0,
     hotelCosts: 0,
-    newRental: 0,
-    utilityConnection: 0,
+    newRentalDeposit: 0,
+    connectUtilities: 0,
     storageUnit: 0,
-    mortgageRent: 0,
-    carRental: 0,
-    cellphoneReconnect: 0,
+    newMonthlyRent: 0,
+    carRentalAndGas: 0,
+    cellphone: 0,
     movingTruck: 0,
-    gasMoving: 0,
-    mentalHealth: 0,
-    security: 0
+    gasForMovingTruck: 0,
+    mentalHealthTreatment: 0,
+    incomeLoss: 0,
+    additionalSecurityMeasures: 0
   });
 
   const [result, setResult] = useState(0);
@@ -100,8 +105,12 @@ const BudgetCalculator = () => {
   const submitHandler = event => {
     event.preventDefault();
     const monthlyKeys = Object.keys(monthlyBudget);
-    const totalCost = monthlyKeys.reduce((accum, current) => {
+    const totalCost = monthlyKeys.reduce((accum, current) => {      
+       
+
       return accum + monthlyBudget[current];
+
+      
     }, 0);
     setResult(
       monthlyBudget.monthlyIncome -
@@ -109,22 +118,29 @@ const BudgetCalculator = () => {
         monthlyBudget.food -
         monthlyBudget.healthInsurance -
         monthlyBudget.carInsurance -
-        monthlyBudget.personalLoans -
-        monthlyBudget.carNote -
-        monthlyBudget.miscMonthlyExpense -
+        monthlyBudget.loans -
+        monthlyBudget.car -
+        monthlyBudget.other -
         monthlyBudget.hotelCosts -
-        monthlyBudget.newRental -
-        monthlyBudget.utilityConnection -
+        monthlyBudget.newRentalDeposit -
+        monthlyBudget.connectUtilities -
         monthlyBudget.storageUnit -
-        monthlyBudget.mortgageRent -
-        monthlyBudget.carRental -
-        monthlyBudget.cellphoneReconnect -
+        monthlyBudget.newMonthlyRent -
+        monthlyBudget.carRentalAndGas -
+        monthlyBudget.cellphone -
         monthlyBudget.movingTruck -
-        monthlyBudget.gasMoving -
-        monthlyBudget.mentalHealth -
-        monthlyBudget.security
+        monthlyBudget.gasForMovingTruck -
+        monthlyBudget.mentalHealthTreatment -
+        monthlyBudget.incomeLoss -
+        monthlyBudget.additionalSecurityMeasures
     );
     console.log({ totalCost });
+    API()
+    .post("/user/addData", monthlyBudget)
+    .then(res => {   
+    console.log(res);       
+    })        
+    .catch(err => console.log(err));  
   };
 
   const changeHandler = event => {
@@ -136,6 +152,20 @@ const BudgetCalculator = () => {
     }));
   };
 
+
+   const handleSubmit = event => {
+    event.preventDefault()
+
+    //put request will refresh calculator
+  API()
+    .put("/user/addData/1", 0)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log(err))
+   };
+  
+  
   const TotalDiv = () => {
     if (result === 0) {
       return <>Total: {result}</>;
@@ -236,9 +266,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="carNote"
+              name="car"
               onChange={changeHandler}
-              value={monthlyBudget.carNote}
+              value={monthlyBudget.car}
             ></input>
           </LabelHandler>
 
@@ -248,9 +278,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="personalLoans"
+              name="loans"
               onChange={changeHandler}
-              value={monthlyBudget.personalLoans}
+              value={monthlyBudget.loans}
             ></input>
           </LabelHandler>
 
@@ -260,9 +290,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="miscMonthlyExpense"
+              name="other"
               onChange={changeHandler}
-              value={monthlyBudget.miscMonthlyExpense}
+              value={monthlyBudget.other}
             ></input>
           </LabelHandler>
         </Calc>
@@ -289,9 +319,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="newRental"
+              name="newRentalDeposit"
               onChange={changeHandler}
-              value={monthlyBudget.newRental}
+              value={monthlyBudget.newRentalDeposit}
             ></input>
           </LabelHandler>
 
@@ -301,9 +331,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="utilityConnection"
+              name="connectUtilities"
               onChange={changeHandler}
-              value={monthlyBudget.utilityConnection}
+              value={monthlyBudget.connectUtilities}
             ></input>
           </LabelHandler>
 
@@ -325,9 +355,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="mortgageRent"
+              name="newMonthlyRent"
               onChange={changeHandler}
-              value={monthlyBudget.mortgageRent}
+              value={monthlyBudget.newMonthlyRent}
             ></input>
           </LabelHandler>
 
@@ -338,9 +368,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="carRental"
+              name="carRentalAndGas"
               onChange={changeHandler}
-              value={monthlyBudget.carRental}
+              value={monthlyBudget.carRentalAndGas}
             ></input>
           </LabelHandler>
 
@@ -351,9 +381,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="cellphoneReconnect"
+              name="cellphone"
               onChange={changeHandler}
-              value={monthlyBudget.cellphoneReconnect}
+              value={monthlyBudget.cellphone}
             ></input>
           </LabelHandler>
 
@@ -375,9 +405,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="gasMoving"
+              name="gasForMovingTruck"
               onChange={changeHandler}
-              value={monthlyBudget.gasMoving}
+              value={monthlyBudget.gasForMovingTruck}
             ></input>
           </LabelHandler>
 
@@ -388,9 +418,21 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="mentalHealth"
+              name="mentalHealthTreatment"
               onChange={changeHandler}
-              value={monthlyBudget.mentalHealth}
+              value={monthlyBudget.mentalHealthTreatment}
+            ></input>
+          </LabelHandler>
+
+          <LabelHandler>
+            <Label>
+              Income Loss <span className="rightOrient"> $</span>
+            </Label>
+            <input
+              type="text"
+              name="incomeLoss"
+              onChange={changeHandler}
+              value={monthlyBudget.incomeLoss}
             ></input>
           </LabelHandler>
 
@@ -400,9 +442,9 @@ const BudgetCalculator = () => {
             </Label>
             <input
               type="text"
-              name="security"
+              name="additionalSecurityMeasures"
               onChange={changeHandler}
-              value={monthlyBudget.security}
+              value={monthlyBudget.additionalSecurityMeasures}
             ></input>
           </LabelHandler>
         </Calc>
@@ -416,6 +458,12 @@ const BudgetCalculator = () => {
           <DifferenceStyle>{TotalDiv()}</DifferenceStyle>
         </Result>
       </div>
+      
+      <div>
+      <Button onClick={handleSubmit}>
+          Update
+        </Button>
+        </div> 
     </div>
   );
 };
