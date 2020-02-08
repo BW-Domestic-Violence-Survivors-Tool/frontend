@@ -451,19 +451,13 @@ const BudgetCalculator = () => {
           <Button type="submit" onClick={submitHandler}>
             Calculate
           </Button>
-          <Button onClick={handleSubmit}>Update</Button>
+          <Button onClick={handleSubmit}>Save</Button>
         </ButtonContainer>
 
         <Result>
           <DifferenceStyle>{TotalDiv()}</DifferenceStyle>
         </Result>
       </div>
-
-      {/* <div>
-      <Button onClick={handleSubmit}>
-          Update
-        </Button>
-        </div>  */}
     </div>
   );
 };
