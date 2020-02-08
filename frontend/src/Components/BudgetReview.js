@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from "styled-components";
-import API from "../utils/axiosWithAuth"
-
-
-
+import API from "../utils/axiosWithAuth";
 
 const Month = styled.div`
   display: flex;
@@ -57,6 +54,8 @@ const Button = styled.button`
   border-radius: 5px;
   background: gray;
   color: lightgray;
+  margin-left: 2%;
+  margin-right: 2%;
 `;
 
 const Result = styled.div`
@@ -74,6 +73,12 @@ const Result = styled.div`
 
 const DifferenceStyle = styled.div`
   text-align: center;
+`;
+
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const BudgetCalculator = () => {
@@ -105,12 +110,8 @@ const BudgetCalculator = () => {
   const submitHandler = event => {
     event.preventDefault();
     const monthlyKeys = Object.keys(monthlyBudget);
-    const totalCost = monthlyKeys.reduce((accum, current) => {      
-       
-
+    const totalCost = monthlyKeys.reduce((accum, current) => {
       return accum + monthlyBudget[current];
-
-      
     }, 0);
     setResult(
       monthlyBudget.monthlyIncome -
@@ -136,11 +137,11 @@ const BudgetCalculator = () => {
     );
     console.log({ totalCost });
     API()
-    .post("/user/addData", monthlyBudget)
-    .then(res => {   
-    console.log(res);       
-    })        
-    .catch(err => console.log(err));  
+      .post("/user/addData", monthlyBudget)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   const changeHandler = event => {
@@ -152,20 +153,18 @@ const BudgetCalculator = () => {
     }));
   };
 
-
-   const handleSubmit = event => {
-    event.preventDefault()
+  const handleSubmit = event => {
+    event.preventDefault();
 
     //put request will refresh calculator
-  API()
-    .put("/user/addData/1", 0)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => console.log(err))
-   };
-  
-  
+    API()
+      .put("/user/addData/1", 0)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  };
+
   const TotalDiv = () => {
     if (result === 0) {
       return <>Total: {result}</>;
@@ -448,22 +447,23 @@ const BudgetCalculator = () => {
             ></input>
           </LabelHandler>
         </Calc>
-
-        <Button type="submit" onClick={submitHandler}>
-          Calculate
-        </Button>
-        {/* <Button type="submit">Reset</Button> */}
+        <ButtonContainer>
+          <Button type="submit" onClick={submitHandler}>
+            Calculate
+          </Button>
+          <Button onClick={handleSubmit}>Update</Button>
+        </ButtonContainer>
 
         <Result>
           <DifferenceStyle>{TotalDiv()}</DifferenceStyle>
         </Result>
       </div>
-      
-      <div>
+
+      {/* <div>
       <Button onClick={handleSubmit}>
           Update
         </Button>
-        </div> 
+        </div>  */}
     </div>
   );
 };
